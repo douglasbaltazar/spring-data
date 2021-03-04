@@ -11,6 +11,7 @@ import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.service.CrudCargoService;
 import br.com.alura.spring.data.service.CrudFuncionarioService;
 import br.com.alura.spring.data.service.CrudUnidadeTrabalhoService;
+import br.com.alura.spring.data.service.RelatorioFuncionarioDinamico;
 import br.com.alura.spring.data.service.RelatoriosService;
 
 @SpringBootApplication
@@ -21,12 +22,14 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudFuncionarioService funcService;
 	private final CrudUnidadeTrabalhoService unidTrabService;
 	private final RelatoriosService relatorioService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 	
-	public SpringDataApplication(CrudCargoService cr, CrudUnidadeTrabalhoService unidTrabService, CrudFuncionarioService funcService, RelatoriosService relatorioService) {
+	public SpringDataApplication(CrudCargoService cr, CrudUnidadeTrabalhoService unidTrabService, CrudFuncionarioService funcService, RelatoriosService relatorioService, RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.cargoService = cr;
 		this.funcService = funcService;
 		this.unidTrabService = unidTrabService;
 		this.relatorioService = relatorioService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 	
 	public static void main(String[] args) {
@@ -44,6 +47,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2- Unidade Trabalho");
 			System.out.println("3- Funcionario");
 			System.out.println("4- Relatorio");
+			System.out.println("5- Relatorio Dinamico");
 			
 			int action = scanner.nextInt();
 			if(action == 1) {
@@ -54,6 +58,8 @@ public class SpringDataApplication implements CommandLineRunner {
 				funcService.inicial(scanner);
 			} else if(action == 4) {
 				relatorioService.inicial(scanner);
+			} else if(action == 5) {
+				relatorioFuncionarioDinamico.inicial(scanner);
 			} else {
 				system = false;
 			}
