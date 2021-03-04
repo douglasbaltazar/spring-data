@@ -4,20 +4,20 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
-import br.com.alura.spring.data.orm.Cargo;
-import br.com.alura.spring.data.repository.CargoRepository;
+import br.com.alura.spring.data.orm.UnidadeTrabalho;
+import br.com.alura.spring.data.repository.UnidadeTrabalhoRepository;
 
 @Service
-public class CrudCargoService {
-	private final CargoRepository cR;
+public class CrudUnidadeTrabalhoService {
+	private final UnidadeTrabalhoRepository cR;
 	private Boolean system = true;
-	public CrudCargoService(CargoRepository cR) {
+	public CrudUnidadeTrabalhoService(UnidadeTrabalhoRepository cR) {
 		this.cR = cR;
 	}
 	
 	public void inicial(Scanner scanner) {
 		while(system) {
-			System.out.println("Qual ação de cargo deseja executar?");
+			System.out.println("Qual ação de Unidade Trabalho deseja executar?");
 			System.out.println("0- Sair");
 			System.out.println("1- Salvar");
 			System.out.println("2- Atualizar");
@@ -48,30 +48,30 @@ public class CrudCargoService {
 	}
 	
 	private void salvar(Scanner scanner) {
-		System.out.println("Descrição do cargo");
+		System.out.println("Descrição do UnidadeTrabalho");
 		String descricao = scanner.next();
-		Cargo cargo = new Cargo();
-		cargo.setDescricao(descricao);
-		cR.save(cargo);
+		UnidadeTrabalho unidadeTrabalho = new UnidadeTrabalho();
+		unidadeTrabalho.setDescricao(descricao);
+		cR.save(unidadeTrabalho);
 		System.out.println("Salvo!");
 	}
 	
 	private void atualizar(Scanner scanner) {
 		System.out.println("Id");
 		int id = scanner.nextInt();
-		System.out.println("Descrição do Cargo");
+		System.out.println("Descrição do UnidadeTrabalho");
 		String descricao = scanner.next();
-		Cargo cargo = new Cargo();
-		cargo.setId(id);
-		cargo.setDescricao(descricao);
-		cR.save(cargo);
+		UnidadeTrabalho unidadeTrabalho = new UnidadeTrabalho();
+		unidadeTrabalho.setId(id);
+		unidadeTrabalho.setDescricao(descricao);
+		cR.save(unidadeTrabalho);
 		System.out.println(id + " atualizado com sucesso!");
 		
 	}
 	
 	private void visualizar() {
-		Iterable<Cargo> cargos = cR.findAll();
-		cargos.forEach(cargo -> System.out.println(cargo.toString()));
+		Iterable<UnidadeTrabalho> unidadeTrabalhos = cR.findAll();
+		unidadeTrabalhos.forEach(unidadeTrabalho -> System.out.println(unidadeTrabalho.toString()));
 	}
 	
 	private void deletar(Scanner scanner) {

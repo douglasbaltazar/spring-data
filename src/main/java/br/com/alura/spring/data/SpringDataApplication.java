@@ -9,15 +9,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.service.CrudCargoService;
+import br.com.alura.spring.data.service.CrudFuncionarioService;
+import br.com.alura.spring.data.service.CrudUnidadeTrabalhoService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
 
 	private Boolean system = true;
 	private final CrudCargoService cargoService;
+	private final CrudFuncionarioService funcService;
+	private final CrudUnidadeTrabalhoService unidTrabService;
 	
-	public SpringDataApplication(CrudCargoService cr) {
+	public SpringDataApplication(CrudCargoService cr, CrudUnidadeTrabalhoService unidTrabService, CrudFuncionarioService funcService) {
 		this.cargoService = cr;
+		this.funcService = funcService;
+		this.unidTrabService = unidTrabService;
 	}
 	
 	public static void main(String[] args) {
@@ -32,11 +38,16 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("Qual ação voce quer executar?");
 			System.out.println("0- Sair");
 			System.out.println("1- Cargo");
-			System.out.println("2- ");
+			System.out.println("2- Unidade Trabalho");
+			System.out.println("3- Funcionario");
 			
 			int action = scanner.nextInt();
 			if(action == 1) {
 				cargoService.inicial(scanner);
+			} else if(action == 2) {
+				unidTrabService.inicial(scanner);
+			} else if(action == 3) {
+				funcService.inicial(scanner);
 			} else {
 				system = false;
 			}
